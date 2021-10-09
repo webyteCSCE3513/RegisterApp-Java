@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\main",
+    "\\src\\main\\java",
+    "\\src\\main\\java\\edu",
+    "\\src\\main\\java\\edu\\uark",
+    "\\src\\main\\java\\edu\\uark\\registerapp",
+    "\\src\\main\\resources",
+    "\\src\\main\\resources\\static",
+    "\\src\\main\\resources\\static\\scripts"
+  ],
+  "SelectedNode": "\\src\\main\\java\\edu\\uark\\registerapp\\RegisterApplication.java",
+  "PreviewInSolutionExplorer": false
+}
