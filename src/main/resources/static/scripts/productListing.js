@@ -1,6 +1,18 @@
+// var splash =  document.createElement("img");
+// splash.src = "https://github.com/webyteCSCE3513/photon-main/blob/main/logo.jpg?raw=true";
+// splash.width = screen.width / 2;
+// splash.height = screen.height / 2;
+// splash.onload 
+// console.log(splash.src);
+// var div = document.getElementById('x');
+// div.appendChild(splash);
+// setTimeout(() =>{
+// 	document.getElementById('splash').style.visibility='none';
+// }, 3000);
+
+
 document.addEventListener("DOMContentLoaded", () => {
 	const productListElements = document.getElementById("productsListing").children;
-
 	for (let i = 0; i < productListElements.length; i++) {
 		productListElements[i].addEventListener("click", productClick);
 	}

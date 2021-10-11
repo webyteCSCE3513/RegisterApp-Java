@@ -1,13 +1,19 @@
-.productsWrapper {
-	display: inline-block;
+*{
+	box-sizing: border-box;
 }
 
-.products {
-	margin: 0 0 2em 0;
-	list-style-type: none;
-	padding: 0;
-	width: 15em;
+.productsWrapper {
+	display: inline-block;
+	margin-top: 0px;
+	padding-top: 0px;
 }
+
+/* .products {
+	margin: 0 0 2em 0;
+	list-style-type: none*;
+	padding: 0;
+	width: 15em; 
+} */
 
 .products li {
 	cursor: pointer;
@@ -27,4 +33,48 @@
 
 a.button {
 	text-decoration: none;
+}
+
+.row {
+	margin-left:-5px;
+	margin-right:-5px;
+}
+
+.column {
+	float: left;
+	width: 50%;
+	padding: 5px;
+}
+
+.row::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	border: 1px solid #ddd;
+	}
+
+th, td {
+	text-align: left;
+	padding: 16px;
+	color:black;
+	}
+	
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+.green{
+	background-color: green;
+	color: black;
+}
+
+.red{
+	background-color: red;
+	color: black;
 }
