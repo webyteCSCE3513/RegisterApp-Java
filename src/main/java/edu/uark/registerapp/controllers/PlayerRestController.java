@@ -1,6 +1,8 @@
 package edu.uark.registerapp.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,9 +36,15 @@ public class PlayerRestController {
     }
 
     @PostMapping("/new")
-    public PlayerEntity createPlayer(@RequestBody PlayerEntity newPlayer) {
-        return repo.save(newPlayer);
-    }
+    public ResponseEntity<PlayerEntity> createPlayer(@RequestBody PlayerEntity playerEntity) {
+		try {
+			PlayerEntity _player = repo
+					.save(new PlayerEntity(playerEntity.getId(), playerEntity.getFirstName(), playerEntity.getLastName(), playerEntity.getCodename()));
+			return new ResponseEntity<>(_player, HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
     // Properties
 	// @Autowired

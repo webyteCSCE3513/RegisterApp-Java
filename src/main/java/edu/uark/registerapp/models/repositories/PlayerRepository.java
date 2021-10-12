@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import org.springframework.data.repository.CrudRepository;
 
-import edu.uark.registerapp.models.api.Player;
 import edu.uark.registerapp.models.entities.PlayerEntity;
 
 public interface PlayerRepository extends CrudRepository<PlayerEntity, UUID> {
@@ -15,5 +14,5 @@ public interface PlayerRepository extends CrudRepository<PlayerEntity, UUID> {
 
     Optional<PlayerEntity> findAllById(int playerId);
 
-    PlayerEntity save(Player newPlayer);
+    PlayerEntity save(PlayerEntity playerEntity);
 }

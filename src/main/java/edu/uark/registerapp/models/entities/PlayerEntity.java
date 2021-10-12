@@ -71,8 +71,8 @@ public class PlayerEntity {
         this.codename = StringUtils.EMPTY;
 	}
 
-	public PlayerEntity(final String firstName, final String lastName, final String codename) {
-		this.id = 0;
+	public PlayerEntity(final int id, final String firstName, final String lastName, final String codename) {
+		this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.codename = codename;

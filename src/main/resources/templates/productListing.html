@@ -26,8 +26,11 @@
 			<!-- <div>
 				<a href="/productDetail/" class="button">Create New</a>
 			</div> -->
-			<input type="text"></input>
-			<button type="button">Add Player</button>
+			<form onsubmit="searchById(document.getElementById(id))">
+				<label for="id">Enter Player Id</label>
+				<input type="number" id="id" name="id" min="0" max="100"/>
+				<input type="submit" value="Submit"/>
+			</form>
 			<div class="row">
 				<div class="column">
 					<table class="red">
