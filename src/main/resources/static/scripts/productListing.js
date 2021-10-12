@@ -11,6 +11,19 @@
 // }, 3000);
 
 document.addEventListener("DOMContentLoaded", () => {
+
+	var splash =  document.createElement("img");
+	splash.src = "https://github.com/webyteCSCE3513/photon-main/blob/main/logo.jpg?raw=true";
+	splash.width = screen.width / 2;
+	splash.height = screen.height / 2;
+	splash.onload 
+	console.log(splash.src);
+	var div = document.getElementById('x');
+	div.appendChild(splash);
+	setTimeout(() =>{ 
+		document.getElementById('splash').style.visibility='visible';
+	}, 3000);
+
 	//const playerListElements = document.getElementById("playersListing").children;
 	const playerListElements = playerList();
 	console.log(playerListElements);
@@ -27,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	};
 	xhttp.open("GET","api/player/1", true);
-	console.log("RESPONSEURL: " + xhttp.responseURL);
+	console.log();
 	
 	xhttp.send();
 	console.log("RESPONSEURL: " + xhttp.responseURL);
