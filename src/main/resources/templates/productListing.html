@@ -9,6 +9,7 @@
 
 	<script type="text/javascript" src="/scripts/master.js" defer></script>
 	<script type="text/javascript" src="/scripts/productListing.js" defer></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js" defer></script>
 </head>
 
 <body>
@@ -32,10 +33,14 @@
 							<th>Player</th>
 							<th>Codename</th>
 						</tr>
-						<tr>
+						<!-- <ul id="playersListing" class="players"> -->
 							<td>player1</td>
 							<td>codename1</td>
-						</tr>
+							<!-- <li th:each="player : ${players}">
+								<input type="text" name="playerId" th:value="${player.id}" />
+								<span class="playerLookupCodeDisplay" th:text="${player.codename}">codename</span>
+							</li>
+						</ul> -->
 					</table>
 				</div>
 				<div class="column">

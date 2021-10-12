@@ -6,41 +6,43 @@
 // console.log(splash.src);
 // var div = document.getElementById('x');
 // div.appendChild(splash);
-// setTimeout(() =>{
+// setTimeout(() =>{ 
 // 	document.getElementById('splash').style.visibility='none';
 // }, 3000);
 
-
 document.addEventListener("DOMContentLoaded", () => {
-	const productListElements = document.getElementById("productsListing").children;
-	for (let i = 0; i < productListElements.length; i++) {
-		productListElements[i].addEventListener("click", productClick);
-	}
-});
+	//const playerListElements = document.getElementById("playersListing").children;
+	const playerListElements = playerList();
+	console.log(playerListElements);
 
-function findClickedListItemElement(clickedTarget) {
-	if (clickedTarget.tagName.toLowerCase() === "li") {
-		return clickedTarget;
-	} else {
-		let ancestorIsListItem = false;
-		let ancestorElement = clickedTarget.parentElement;
+	// for (i=0; i<playerListElements.length; i++){
+	// 	playerBuildTableRow(playerListElements[i]);
+	// }
 
-		while (!ancestorIsListItem && (ancestorElement != null)) {
-			ancestorIsListItem = (ancestorElement.tagName.toLowerCase() === "li");
-
-			if (!ancestorIsListItem) {
-				ancestorElement = ancestorElement.parentElement;
-			}
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+		// Typical action to be performed when the document is ready:
+		document.getElementById("playersListing").innerHTML = xhttp.responseText;
 		}
+	};
+	xhttp.open("GET","api/player/1", true);
+	console.log("RESPONSEURL: " + xhttp.responseURL);
+	
+	xhttp.send();
+	console.log("RESPONSEURL: " + xhttp.responseURL);
+	});
 
-		return (ancestorIsListItem ? ancestorElement : null);
-	}
+function playerList(){
+	var url = '/api/player/all';
+	$.get(url);
 }
 
-function productClick(event) {
-	let listItem = findClickedListItemElement(event.target);
-
-	window.location.assign(
-		"/productDetail/"
-		+ listItem.querySelector("input[name='productId'][type='hidden']").value);
-}
+function playerBuildTableRow(player) {
+	var ret =
+	  "<tr>" +
+	   "<td>" + player.id + "</td>" +
+	   "<td>" + player.codename + "</td>"
+	  "</tr>";
+	return ret;
+  }

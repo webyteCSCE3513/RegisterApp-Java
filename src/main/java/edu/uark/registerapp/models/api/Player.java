@@ -1,74 +1,68 @@
 package edu.uark.registerapp.models.api;
 
-import java.util.UUID;
+import org.apache.commons.lang3.StringUtils;
+
+import edu.uark.registerapp.models.entities.PlayerEntity;
 
 public class Player extends ApiResponse{
-    private UUID id;
-	public UUID getId() {
+    private int id;
+	public int getId() {
 		return this.id;
 	}
-	public Player setId(final UUID id) {
-		this.id = id;
+	public Player setId(int playerId) {
+		this.id = playerId;
 		return this;
 	}
 
-	private String lookupCode;
+	private String codename;
 
-	public String getLookupCode() {
-		return this.lookupCode;
+	public String getCodename() {
+		return this.codename;
 	}
 
-// 	public Player setCodename(final String codename) {
-// 		this.codename = codename;
-// 		return this;
-// 	}
+	public Player setCodename(final String codename) {
+		this.codename = codename;
+		return this;
+	}
 
-// 	private int count;
+	private String firstName;
 
-// 	public int getCount() {
-// 		return this.count;
-// 	}
+	public String getfirstName() {
+		return this.firstName;
+	}
 
-// 	public Product setCount(final int count) {
-// 		this.count = count;
-// 		return this;
-// 	}
+	public Player setFirstName(final String firstName) {
+		this.firstName = firstName;
+		return this;
+	}
 
-// 	private String createdOn;
+	private String lastName;
 
-// 	public String getCreatedOn() {
-// 		return this.createdOn;
-// 	}
+	public String getLastName() {
+		return this.lastName;
+	}
 
-// 	public Product setCreatedOn(final String createdOn) {
-// 		this.createdOn = createdOn;
-// 		return this;
-// 	}
+	public Player setLastName(final String lastName) {
+		this.lastName = lastName;
+		return this;
+	}
 
-// 	public Product setCreatedOn(final LocalDateTime createdOn) {
-// 		this.createdOn =
-// 			createdOn.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
 
-// 		return this;
-// 	}
+	public Player() {
+		super();
 
-// 	public Product() {
-// 		super();
+		this.codename = StringUtils.EMPTY;
+		this.id = 0;
+		this.firstName = StringUtils.EMPTY;
+		this.lastName = StringUtils.EMPTY;
+	}
 
-// 		this.count = -1;
-// 		this.id = new UUID(0, 0);
-// 		this.lookupCode = StringUtils.EMPTY;
+	public Player(final PlayerEntity playerEntity) {
+		super(false);
 
-// 		this.setCreatedOn(LocalDateTime.now());
-// 	}
-
-// 	public Product(final ProductEntity productEntity) {
-// 		super(false);
-
-// 		this.id = productEntity.getId();
-// 		this.count = productEntity.getCount();
-// 		this.lookupCode = productEntity.getLookupCode();
-
-// 		this.setCreatedOn(productEntity.getCreatedOn());
-// 	}
+		this.id = playerEntity.getId();
+		this.firstName = playerEntity.getFirstName();
+		this.lastName = playerEntity.getLastName();
+		this.codename = playerEntity.getCodename();
+	}
 }
