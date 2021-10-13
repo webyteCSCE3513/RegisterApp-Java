@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 function searchById(id){
-	let intId = parseInt(id);
 	var url = "http://localhost:8080/api/player/" + id;
 	fetch(url, {
 		mode:'no-cors'
