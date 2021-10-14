@@ -16,32 +16,75 @@ async function addnewPlayer(id, codename){
 }
 
 async function searchById(id, codename, tableName){
-	if (codename != ""){
-		await addnewPlayer(id, codename);
-	}
-
+	
 	// var url = "http://webytedatabase.herokuapp.com/api/player/" + id;
 	var url = "http://localhost:8080/api/player/" +id;
 	const response = await fetch(url, {
 		mode:'no-cors'
 	});
-	let player = await response.json(); //probably make it object
-	console.log(player);
-	console.log(typeof player);
-	var playerJSON = JSON.stringify(player);
-	console.log(typeof playerJSON);
 
+	//Does try block if ID is in database else goes to catch block
+	try {
+	var player = await response.json(); //probably make it object
+	console.log(player);
+	var playerJSON = JSON.stringify(player);
 	playerJSON = JSON.parse(playerJSON);
-	console.log(playerJSON.id);
-	console.log(playerJSON.codename);
+	}
+	catch(err){
+		console.log(err);
+
+		//Only adds to the database if codename is entered with ID
+		if(codename != "")
+			{await addnewPlayer(id,codename);
+				const response = await fetch(url, {
+					mode:'no-cors'
+				});
+				let newPlay = await response.json(); //probably make it object
+				console.log(newPlay);
+				var playerJSON = JSON.stringify(newPlay);
+				playerJSON = JSON.parse(playerJSON);
+			}
+		else
+			{
+				alert("ID not found. Please enter a codename");
+			}
+		
+	}
 	
 	function addPlayer() {
 		var table = document.getElementById(tableName);
+		var table2 = document.getElementById("greenTable");
+		var table1 = document.getElementById("redTable");
+		if(table1.rows.length > 1)
+		{
+		for(var i = 0; i < table1.rows.length;i++)
+			{
+				if(table1.rows[i].cells[0].innerHTML == playerJSON.id)
+					{
+						alert("Player already in game");
+						return;
+					}
+			}
+		}
+
+		if(table2.rows.length > 1)
+		{
+		for(var i = 0; i < table2.rows.length;i++)
+			{
+				if(table2.rows[i].cells[0].innerHTML == playerJSON.id)
+					{
+						alert("Player already in game");
+						return;
+					}
+			}
+		}
+
 		var row = table.insertRow();
 		var cell = row.insertCell();
 		cell.innerHTML = playerJSON.id;
 		cell = row.insertCell();
 		cell.innerHTML = playerJSON.codename;
+		console.log(table.rows[1].cells[0].innerHTML);
 	}
 
 	addPlayer();
