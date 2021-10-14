@@ -6,7 +6,8 @@ async function searchById(id, codename, tableName){
 	if (codename != ""){
 		addnewPlayer(id, codename);
 	}
-	var url = "http://localhost:8080/api/player/" + id;
+
+	var url = "http://webytedatabase.herokuapp.com/api/player/" + id;
 	const response = await fetch(url, {
 		mode:'no-cors'
 	});
@@ -33,7 +34,7 @@ async function searchById(id, codename, tableName){
 }
 
 async function addnewPlayer(id, codename){
-	var url = "http://localhost:8080/api/player/new";
+	var url = "http://webytedatabase.herokuapp.com/api/player/new";
 	await fetch(url,{
 		method: 'POST',
 		headers: {
