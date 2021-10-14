@@ -1,16 +1,31 @@
-// document.addEventListener("DOMContentLoaded", function(event) {
-// 	event.preventDefault(); //not sure what this does, really
-// })
+async function addnewPlayer(id, codename){
+	//var url = "http://webytedatabase.herokuapp.com/api/player/new";
+	var url ="http://localhost:8080/api/player/new";
+	await fetch(url,{
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json',	
+			'Content-Type': 'application/json'},
+		body: JSON.stringify({
+			id: id,
+			firstName: null,
+			lastName: null,
+			codename: codename
+		})
+	});
+}
 
 async function searchById(id, codename, tableName){
-	if (codename != null){
-		addnewPlayer();
+	if (codename != ""){
+		await addnewPlayer(id, codename);
 	}
-	var url = "http://localhost:8080/api/player/" + id;
+
+	// var url = "http://webytedatabase.herokuapp.com/api/player/" + id;
+	var url = "http://localhost:8080/api/player/" +id;
 	const response = await fetch(url, {
 		mode:'no-cors'
-	})
-	const player = await response.json(); //probably make it object
+	});
+	let player = await response.json(); //probably make it object
 	console.log(player);
 	console.log(typeof player);
 	var playerJSON = JSON.stringify(player);
@@ -19,7 +34,7 @@ async function searchById(id, codename, tableName){
 	playerJSON = JSON.parse(playerJSON);
 	console.log(playerJSON.id);
 	console.log(playerJSON.codename);
-
+	
 	function addPlayer() {
 		var table = document.getElementById(tableName);
 		var row = table.insertRow();
@@ -30,25 +45,4 @@ async function searchById(id, codename, tableName){
 	}
 
 	addPlayer();
-}
-
-function addnewPlayer(id, codename){
-	var url = "http://localhost:8080/api/player/new";
-	const data = { 
-		id: id,
-		firstName: "Default",
-		lastName: "Default",
-		codename: codename
-	};
-	fetch(url,{
-		method: 'POST',
-		body: JSON.stringify(data)
-	})
-	.then(response => response.json())
-	.then(data => {
-		console.log('Success:', data);
-	})
-	.catch((error) => {
-		console.error('Error:', error);
-	});
 }
