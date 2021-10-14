@@ -1,10 +1,23 @@
-// document.addEventListener("DOMContentLoaded", function(event) {
-// 	event.preventDefault(); //not sure what this does, really
-// })
+async function addnewPlayer(id, codename){
+	//var url = "http://webytedatabase.herokuapp.com/api/player/new";
+	var url ="http://localhost:8080/api/player/new";
+	await fetch(url,{
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json',	
+			'Content-Type': 'application/json'},
+		body: JSON.stringify({
+			id: id,
+			firstName: null,
+			lastName: null,
+			codename: codename
+		})
+	});
+}
 
 async function searchById(id, codename, tableName){
 	if (codename != ""){
-		addnewPlayer(id, codename);
+		await addnewPlayer(id, codename);
 	}
 
 	// var url = "http://webytedatabase.herokuapp.com/api/player/" + id;
@@ -12,7 +25,7 @@ async function searchById(id, codename, tableName){
 	const response = await fetch(url, {
 		mode:'no-cors'
 	});
-	const player = await response.json(); //probably make it object
+	let player = await response.json(); //probably make it object
 	console.log(player);
 	console.log(typeof player);
 	var playerJSON = JSON.stringify(player);
@@ -32,28 +45,4 @@ async function searchById(id, codename, tableName){
 	}
 
 	addPlayer();
-}
-
-async function addnewPlayer(id, codename){
-	//var url = "http://webytedatabase.herokuapp.com/api/player/new";
-	var url ="http://localhost:8080/api/player/new";
-	await fetch(url,{
-		method: 'POST',
-		headers: {
-			'Accept': 'application/json',	
-			'Content-Type': 'application/json'},
-		body: JSON.stringify({
-			"id": id,
-			"firstName": "",
-			"lastName": "",
-			"codename": codename
-		}),
-	})
-	.then(response => response.json())
-	.then(data => {
-		console.log('Success:', data);
-	})
-	.catch((error) => {
-		console.error('Error:', error);
-	});
 }
