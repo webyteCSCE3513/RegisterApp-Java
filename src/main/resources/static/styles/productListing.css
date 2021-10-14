@@ -64,12 +64,12 @@ tr:nth-child(even) {
 
 .green{
 	background-color: rgb(0, 173, 0);
-	color: black;
+	color: white;
 }
 
 .red{
 	background-color: red;
-	color: black;
+	color: white;
 }
 
 .button{
