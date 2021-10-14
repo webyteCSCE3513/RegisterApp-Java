@@ -7,7 +7,8 @@ async function searchById(id, codename, tableName){
 		addnewPlayer(id, codename);
 	}
 
-	var url = "http://webytedatabase.herokuapp.com/api/player/" + id;
+	// var url = "http://webytedatabase.herokuapp.com/api/player/" + id;
+	var url = "http://localhost:8080/api/player/" +id;
 	const response = await fetch(url, {
 		mode:'no-cors'
 	});
@@ -20,7 +21,7 @@ async function searchById(id, codename, tableName){
 	playerJSON = JSON.parse(playerJSON);
 	console.log(playerJSON.id);
 	console.log(playerJSON.codename);
-
+	
 	function addPlayer() {
 		var table = document.getElementById(tableName);
 		var row = table.insertRow();
@@ -34,17 +35,18 @@ async function searchById(id, codename, tableName){
 }
 
 async function addnewPlayer(id, codename){
-	var url = "http://webytedatabase.herokuapp.com/api/player/new";
+	//var url = "http://webytedatabase.herokuapp.com/api/player/new";
+	var url ="http://localhost:8080/api/player/new";
 	await fetch(url,{
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',	
 			'Content-Type': 'application/json'},
 		body: JSON.stringify({
-			id: id,
-			firstName: "",
-			lastName: "",
-			codename: codename
+			"id": id,
+			"firstName": "",
+			"lastName": "",
+			"codename": codename
 		}),
 	})
 	.then(response => response.json())
