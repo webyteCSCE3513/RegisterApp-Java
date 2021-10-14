@@ -15,7 +15,6 @@ import edu.uark.registerapp.models.api.Player;
 public class PlayerEntity {
     @Id
     @Column(name="id", updatable = false)
-    @GeneratedValue(strategy=GenerationType.AUTO)
     private final int id;
     
     public int getId(){

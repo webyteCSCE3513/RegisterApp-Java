@@ -3,13 +3,13 @@
 // })
 
 async function searchById(id, codename, tableName){
-	if (codename != null){
-		addnewPlayer();
+	if (codename != ""){
+		addnewPlayer(id, codename);
 	}
 	var url = "http://localhost:8080/api/player/" + id;
 	const response = await fetch(url, {
 		mode:'no-cors'
-	})
+	});
 	const player = await response.json(); //probably make it object
 	console.log(player);
 	console.log(typeof player);
@@ -32,17 +32,19 @@ async function searchById(id, codename, tableName){
 	addPlayer();
 }
 
-function addnewPlayer(id, codename){
+async function addnewPlayer(id, codename){
 	var url = "http://localhost:8080/api/player/new";
-	const data = { 
-		id: id,
-		firstName: "Default",
-		lastName: "Default",
-		codename: codename
-	};
-	fetch(url,{
+	await fetch(url,{
 		method: 'POST',
-		body: JSON.stringify(data)
+		headers: {
+			'Accept': 'application/json',	
+			'Content-Type': 'application/json'},
+		body: JSON.stringify({
+			id: id,
+			firstName: "",
+			lastName: "",
+			codename: codename
+		}),
 	})
 	.then(response => response.json())
 	.then(data => {

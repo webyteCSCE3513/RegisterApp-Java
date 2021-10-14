@@ -2,6 +2,7 @@ package edu.uark.registerapp.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,15 +36,21 @@ public class PlayerRestController {
         return repo.getPlayerById(playerId);
     }
 
-    @PostMapping("/new")
-    public ResponseEntity<PlayerEntity> createPlayer(@RequestBody PlayerEntity playerEntity) {
-		try {
-			PlayerEntity _player = repo
-					.save(new PlayerEntity(playerEntity.getId(), playerEntity.getFirstName(), playerEntity.getLastName(), playerEntity.getCodename()));
-			return new ResponseEntity<>(_player, HttpStatus.CREATED);
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+    @PostMapping(path="/new",consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<PlayerEntity> createPlayer(@RequestBody PlayerEntity playerEntity) throws Exception {
+		PlayerEntity player = repo.save(playerEntity);
+        // try {
+		// 	PlayerEntity _player = repo
+		// 			.save(new PlayerEntity(playerEntity.getId(), playerEntity.getFirstName(), playerEntity.getLastName(), playerEntity.getCodename()));
+		// 	return new ResponseEntity<>(_player, HttpStatus.CREATED);
+		// } catch (Exception e) {
+		// 	return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		// }
+        if (player == null){
+            throw new Exception();
+        }else{
+            return new ResponseEntity<>(player, HttpStatus.CREATED);
+        }
 	}
 
     // Properties
