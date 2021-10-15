@@ -18,21 +18,19 @@ async function addnewPlayer(id, codename){
 async function searchById(id, codename, tableName){
 	
 	var url = "http://webytedatabase.herokuapp.com/api/player/" + id;
-	//var url = "http://localhost:8080/api/player/" +id;
+	//var url = "http://localhost:8080/api/player/" + id;
 	const response = await fetch(url, {
 		mode:'no-cors'
 	});
 
 	//Does try block if ID is in database else goes to catch block
 	try {
-	var player = await response.json(); //probably make it object
-	console.log(player);
-	var playerJSON = JSON.stringify(player);
-	playerJSON = JSON.parse(playerJSON);
+		var player = await response.json(); //probably make it object
+		console.log(player);
+		var playerJSON = JSON.stringify(player);
+		playerJSON = JSON.parse(playerJSON);
 	}
-	catch(err){
-		console.log(err);
-
+	catch{
 		//Only adds to the database if codename is entered with ID
 		if(codename != "")
 			{await addnewPlayer(id,codename);
