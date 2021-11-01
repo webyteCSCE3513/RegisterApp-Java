@@ -1,6 +1,6 @@
 async function addnewPlayer(id, codename){
-	var url = "http://webytedatabase.herokuapp.com/api/player/new";
-	//var url ="http://localhost:8080/api/player/new";
+	//var url = "http://webytedatabase.herokuapp.com/api/player/new";
+	var url ="http://localhost:8080/api/player/new";
 	await fetch(url,{
 		method: 'POST',
 		headers: {
@@ -17,8 +17,8 @@ async function addnewPlayer(id, codename){
 
 async function searchById(id, codename, tableName){
 	
-	var url = "http://webytedatabase.herokuapp.com/api/player/" + id;
-	//var url = "http://localhost:8080/api/player/" + id;
+	//var url = "http://webytedatabase.herokuapp.com/api/player/" + id;
+	var url = "http://localhost:8080/api/player/" + id;
 	const response = await fetch(url, {
 		mode:'no-cors'
 	});
@@ -87,3 +87,13 @@ async function searchById(id, codename, tableName){
 
 	addPlayer();
 }
+
+const log = document.getElementById('log');
+document.addEventListener('keydown', logKey);
+function logKey(e) {
+	if (e.code == "Enter"){
+ 		window.location.href = '/api/player/playAction';
+	}
+}
+
+

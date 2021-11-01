@@ -1,43 +1,50 @@
 let hideProductSavedAlertTimer = undefined;
 
 document.addEventListener("DOMContentLoaded", () => {
-	const productLookupCodeElement = getProductLookupCodeElement();
+	//console.log("hello");
+	// const productLookupCodeElement = getProductLookupCodeElement();
 
-	getProductCountElement().addEventListener("keypress", productCountKeypress);
-	productLookupCodeElement.addEventListener("keypress", productLookupCodeKeypress);
+	// getProductCountElement().addEventListener("keypress", productCountKeypress);
+	// productLookupCodeElement.addEventListener("keypress", productLookupCodeKeypress);
 	
-	getSaveActionElement().addEventListener("click", saveActionClick);
-	getDeleteActionElement().addEventListener("click", deleteActionClick);
+	//getSaveActionElement().addEventListener("click", saveActionClick);
+	// getDeleteActionElement().addEventListener("click", deleteActionClick);
 
-	if (!productLookupCodeElement.disabled) {
-		productLookupCodeElement.focus();
-		productLookupCodeElement.select();
+	// if (!productLookupCodeElement.disabled) {
+	// 	productLookupCodeElement.focus();
+	// 	productLookupCodeElement.select();
+	// }
+});
+document.addEventListener("keydown", (e) => {
+	var e = document.createEvent('KeyboardEvent');
+	if (e.key === "Shift") {
+	  alert("e: " + e.key);
 	}
 });
 
-function productLookupCodeKeypress(event) {
-	if (event.which !== 13) { // Enter key
-		return;
-	}
+// function productLookupCodeKeypress(event) {
+// if (event.which !== 13) { // Enter key
+// 		return;
+// 	}
 
-	const productCountElement = getProductCountElement();
-	productCountElement.focus();
-	productCountElement.select();
-}
+// 	const productCountElement = getProductCountElement();
+// 	productCountElement.focus();
+// 	productCountElement.select();
+// }
 
-function productCountKeypress(event) {
-	if (event.which !== 13) { // Enter key
-		return;
-	}
+// function productCountKeypress(event) {
+// 	if (event.which !== 13) { // Enter key
+// 		return;
+// 	}
 
-	saveActionClick();
-}
+// 	saveActionClick();
+// }
 
 // Save
 function saveActionClick(event) {
-	if (!validateSave()) {
-		return;
-	}
+	// if (!validateSave()) {
+	// 	return;
+	// }
 
 	const saveActionElement = event.target;
 	saveActionElement.disabled = true;
@@ -138,39 +145,39 @@ function deleteActionClick(event) {
 // End delete
 
 // Getters and setters
-function getSaveActionElement() {
-	return document.getElementById("saveButton");
+function getStartGameElement() {
+	return document.getElementById("startGame");
 }
 
-function getSavedAlertModalElement() {
-	return document.getElementById("productSavedAlertModal");
-}
+// function getSavedAlertModalElement() {
+// 	return document.getElementById("productSavedAlertModal");
+// }
 
-function getDeleteActionElement() {
-	return document.getElementById("deleteButton");
-}
+// function getDeleteActionElement() {
+// 	return document.getElementById("deleteButton");
+// }
 
-function getProductId() {
-	return getProductIdElement().value;
-}
-function setProductId(productId) {
-	getProductIdElement().value = productId;
-}
-function getProductIdElement() {
-	return document.getElementById("productId");
-}
+// function getProductId() {
+// 	return getProductIdElement().value;
+// }
+// function setProductId(productId) {
+// 	getProductIdElement().value = productId;
+// }
+// function getProductIdElement() {
+// 	return document.getElementById("productId");
+// }
 
-function getProductLookupCode() {
-	return getProductLookupCodeElement().value;
-}
-function getProductLookupCodeElement() {
-	return document.getElementById("productLookupCode");
-}
+// function getProductLookupCode() {
+// 	return getProductLookupCodeElement().value;
+// }
+// function getProductLookupCodeElement() {
+// 	return document.getElementById("productLookupCode");
+// }
 
-function getProductCount() {
-	return Number(getProductCountElement().value);
-}
-function getProductCountElement() {
-	return document.getElementById("productCount");
-}
-// End getters and setters
+// function getProductCount() {
+// 	return Number(getProductCountElement().value);
+// }
+// function getProductCountElement() {
+// 	return document.getElementById("productCount");
+// }
+// // End getters and setters

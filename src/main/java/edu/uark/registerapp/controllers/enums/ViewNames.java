@@ -1,7 +1,7 @@
 package edu.uark.registerapp.controllers.enums;
 
 public enum ViewNames {
-	PRODUCT_DETAIL("productDetail"),
+	PLAY_ACTION("playAction"),
 	PRODUCT_LISTING("productListing", "/");
 	
 	public String getRoute() {
