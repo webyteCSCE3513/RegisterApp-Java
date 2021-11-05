@@ -7,11 +7,45 @@
 
 	<script type="text/javascript" src="/scripts/master.js" defer></script>
 	<script type="text/javascript" src="/scripts/productListing.js" defer></script>
+  <script type="text/javascript" src="/scripts/playAction.js" defer></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js" defer></script>
 </head>
-<body>
-    <h1>Play Action Screen</h1>
+<body style = "background-color: black;">
+	<div>
+		<div style="width: 40%; height: 40%; float:left; margin-right: 5px;color: white; font-weight: bold;font-size: 25px; text-align: center;border: 2px solid green; border-radius: 25px;">Green Team
+			<table id = "greenTeam" style = "background-color: black;">
+        <tr>
+          <th>Player</th>
+          <th>Score</th>
+        </tr>
+      </table>
+      <em style = " color: white; float: bottom; text-align: center;">Total:</em>
+      <em style = "color: white; float: bottom; text-align: right;">0</em>
+      
+		</div>
+		<div style="width: 40%; height: 40%; color : white; font-weight: bold;font-size: 25px;  float:right;text-align: center; border :2px solid red;border-radius: 25px;">Red Team
+      <table id = "redTeam" style = "background-color: black;">
+        <tr>
+          <th>Player</th>
+          <th>Score</th>
+        </tr>
+      </table>
+      <em style = " color: white; float: bottom; text-align: center;">Total:</em>
+      <em style = "color: white; float: bottom; text-align: right;">0</em>
+    </div>
+		
+	</div>
+	<div style = "color: white; text-align: center; font-weight: bold;font-size: 25px;">Time Remaining</div>
+	<p id = "timer" style = "color: white; text-align: center; font-weight: bold;font-size: 20px;"></p> 
+	<div style = "width: 100%; height : 50%; float : left; color: white; border : 2px solid yellow; border-radius: 18px;margin-top: 3px; font-weight: bold;font-size: 25px;">Current Game Action
+    <table id = "redTeam" style = "background-color: black;">
+      <tr>
+        <th>Player1</th>
+        <th>hit</th>
+        <th>Player2</th>
+      </tr>
+    </table>
+  </div>
+
 </body>
-<script>
-    console.log("does this work");
-</script>
+</html>

@@ -1,3 +1,5 @@
+var greenNames = [];
+var redNames = [];
 async function addnewPlayer(id, codename){
 	//var url = "http://webytedatabase.herokuapp.com/api/player/new";
 	var url ="http://localhost:8080/api/player/new";
@@ -15,6 +17,7 @@ async function addnewPlayer(id, codename){
 	});
 }
 
+	
 async function searchById(id, codename, tableName){
 	
 	//var url = "http://webytedatabase.herokuapp.com/api/player/" + id;
@@ -53,6 +56,9 @@ async function searchById(id, codename, tableName){
 		var table = document.getElementById(tableName);
 		var table2 = document.getElementById("greenTable");
 		var table1 = document.getElementById("redTable");
+		
+		
+		
 		if(table1.rows.length > 1)
 		{
 		for(var i = 0; i < table1.rows.length;i++)
@@ -65,6 +71,19 @@ async function searchById(id, codename, tableName){
 			}
 		}
 
+		if(tableName == "greenTable")
+			{
+				console.log(playerJSON.codename);
+				greenNames.push(playerJSON.codename);
+				
+				localStorage.setItem('saveGreen', JSON.stringify(greenNames));
+			}
+		if(tableName == "redTable")
+			{
+				redNames.push(playerJSON.codename);
+				localStorage.setItem('saveRed', JSON.stringify(redNames));
+			}
+			
 		if(table2.rows.length > 1)
 		{
 		for(var i = 0; i < table2.rows.length;i++)
