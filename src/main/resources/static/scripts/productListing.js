@@ -110,9 +110,19 @@ async function searchById(id, codename, tableName){
 const log = document.getElementById('log');
 document.addEventListener('keydown', logKey);
 function logKey(e) {
-	if (e.code == "Enter"){
- 		window.location.href = '/api/player/playAction';
-	}
+    if (e.code == "Enter"){
+        
+        var timeLeft = 29;
+        var what = setInterval(function(){
+            document.getElementById('toPlay').innerHTML = "Game starts in: " + timeLeft;
+            timeLeft--;
+        }, 1000);
+
+        setTimeout(function(){
+            window.location.href = '/api/player/playAction'}, 30000);
+                
+    }
 }
+
 
 
