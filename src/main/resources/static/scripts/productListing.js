@@ -29,7 +29,7 @@ async function searchById(id, codename, tableName){
 	//Does try block if ID is in database else goes to catch block
 	try {
 		var player = await response.json(); //probably make it object
-		console.log(player);
+		//console.log(player);
 		var playerJSON = JSON.stringify(player);
 		playerJSON = JSON.parse(playerJSON);
 	}
@@ -41,7 +41,7 @@ async function searchById(id, codename, tableName){
 					mode:'no-cors'
 				});
 				let newPlay = await response.json(); //probably make it object
-				console.log(newPlay);
+				//console.log(newPlay);
 				var playerJSON = JSON.stringify(newPlay);
 				playerJSON = JSON.parse(playerJSON);
 			}
@@ -73,7 +73,7 @@ async function searchById(id, codename, tableName){
 
 		if(tableName == "greenTable")
 			{
-				console.log(playerJSON.codename);
+				//console.log(playerJSON.codename);
 				greenNames.push(playerJSON.codename);
 				
 				localStorage.setItem('saveGreen', JSON.stringify(greenNames));
@@ -101,7 +101,7 @@ async function searchById(id, codename, tableName){
 		cell.innerHTML = playerJSON.id;
 		cell = row.insertCell();
 		cell.innerHTML = playerJSON.codename;
-		console.log(table.rows[1].cells[0].innerHTML);
+		//console.log(table.rows[1].cells[0].innerHTML);
 	}
 
 	addPlayer();
