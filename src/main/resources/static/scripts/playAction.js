@@ -22,15 +22,15 @@
 		cell.innerHTML = 0;
     }
 	document.getElementById('timer').innerHTML =
-  06 + ":" + 00;
+  06 + ":" + 00; //Change this to change game duration
 startTimer();
 
 
 function startTimer() {
   var timeNow = document.getElementById('timer').innerHTML;
   var times = timeNow.split(/[:]+/);
-  var m = times[0];
-  var s = checkSecond((times[1] - 1));
+  m = times[0]; //changed to be able to access from inside displayWarning()
+  s = checkSecond((times[1] - 1));
   if(s==59){m=m-1}
   if(m<0){
     return
@@ -46,4 +46,13 @@ function checkSecond(sec) {
   if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
   if (sec < 0) {sec = "59"};
   return sec;
+}
+
+function displayWarning() {
+  var x = document.getElementById("warningDiv");
+  if (m == 0 && s <= 59) {
+    x.style.visibility = "visible";
+  } else {
+    x.style.visibility = "hidden";
+  }
 }
