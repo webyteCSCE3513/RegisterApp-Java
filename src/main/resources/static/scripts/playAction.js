@@ -1,7 +1,53 @@
+document.addEventListener("DOMContentLoaded", async () => {
+  
+  while (true){
+      try{
+        var url = "http://localhost:8080/api/player/startServer";
+        const response =  await fetch(url, {
+          mode:'no-cors'
+        });
+        console.log(response);
+        const responseArray = response.split(":");
+        
+        killerURL = "http://localhost:8080/api/player/" + repsonseArray[0];
+        const killer = await fetch(killerURL, {
+          mode: 'no-cors'
+        });
+        console.log(await killer);
+        
+        killedURL = "http://localhost:8080/api/player/" + responseArray[1];
+        const killed = await fetch(killedURL, {
+          mode: 'no-cors'
+        });
+        console.log(await killed);
+
+        var urlStopServer = "http://localhost:8080/api/player/stopServer";
+        const stopServer = await fetch(urlStopServer, {
+          mode: 'no-cors'
+        });
+
+      }
+      catch{
+        console.log("Error");
+      }
+    }
+      //processing the response
+      //show on frontend
+      //go back to route
+    // setTimeout(stopServer(), 5000)
+
+    // function stopServer(){
+    //   var url = "http://localhost:8080/api/player/stopServer";
+    //   const response = fetch(url, {
+    //     mode:'no-cors'
+    //   });
+    // }
+});
+
 
     greenNames = JSON.parse(localStorage.getItem('saveGreen'));
     redNames = JSON.parse(localStorage.getItem('saveRed'));
-   
+
     for(var i = 0; i < greenNames.length; i++)
     {
         var table = document.getElementById("greenTeam");
@@ -56,3 +102,27 @@ function displayWarning() {
     x.style.visibility = "hidden";
   }
 }
+
+// async function getResponse(){
+//   while (true){
+//     var url = "http://localhost:8080/api/player/startServer";
+//     const response =  await fetch(url, {
+//       mode:'no-cors'
+//     });
+//     console.log(response);
+//     const responseArray = response.split(":");
+    
+//     killerURL = "http://localhost:8080/api/player/" + repsonseArray[0];
+//     //killerURL = "http://localhost:8080/api/player/1";
+//     const killer = await fetch(killerURL, {
+//       mode: 'no-cors'
+//     });
+//     console.log(await killer);
+    
+//     killedURL = "http://localhost:8080/api/player/" + responseArray[1];
+//     const killed = await fetch(killedURL, {
+//       mode: 'no-cors'
+//     });
+//     console.log(await killed);
+//   }
+// }

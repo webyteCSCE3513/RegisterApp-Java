@@ -1,5 +1,6 @@
 var greenNames = [];
 var redNames = [];
+
 async function addnewPlayer(id, codename){
 	//var url = "http://webytedatabase.herokuapp.com/api/player/new";
 	var url ="http://localhost:8080/api/player/new";
@@ -17,7 +18,6 @@ async function addnewPlayer(id, codename){
 	});
 }
 
-	
 async function searchById(id, codename, tableName){
 	
 	//var url = "http://webytedatabase.herokuapp.com/api/player/" + id;
@@ -119,7 +119,7 @@ function logKey(e) {
         }, 1000);
 
         setTimeout(function(){
-            window.location.href = '/api/player/playAction'}, 30000);
+            window.location.href = '/api/player/playAction'}, 300);
                 
     }
 }
