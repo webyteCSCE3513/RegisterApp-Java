@@ -1,6 +1,7 @@
 package edu.uark.registerapp.controllers;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,6 +34,14 @@ public class PlayerRestController {
 
     @GetMapping(value="/playAction")
 	public ModelAndView start() {
+
+        // DatagramSocket socket = new DatagramSocket();
+        // InetAddress inetAddress = InetAddress.getByName("localhost");
+        // int iport = 7501;
+
+        // SocketAddress socketAddress = new InetSocketAddress(inetAddress, iport);
+        // socket.bind(socketAddress);
+        
 		return (new ModelAndView(ViewNames.PLAY_ACTION.getViewName()))
 			.addObject(
 				ViewModelNames.PLAYER.getValue(),
@@ -40,20 +49,21 @@ public class PlayerRestController {
 	}
 
     @GetMapping(value="/startServer")
-    public String startServer(){
+    public JSONObject startServer(){
         udpBaseServer server = new udpBaseServer();
         try{
-            String udpResponse = server.udpResponse();
-            return udpResponse;
+            JSONObject data = server.udpResponse();
+            return data;
         }
         catch(Exception e){
             System.out.println(e);
-            return e.toString();
+            return null;
         }
     }
 
     @GetMapping(value="/stopServer")
     public int stopServer(){
+        
         try{
             udpBaseClient.main(null);
             return HttpStatus.ACCEPTED.value();

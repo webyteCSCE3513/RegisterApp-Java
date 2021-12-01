@@ -1,49 +1,46 @@
+greenNames = JSON.parse(localStorage.getItem('saveGreen'));
+redNames = JSON.parse(localStorage.getItem('saveRed'));
+
 document.addEventListener("DOMContentLoaded", async () => {
-  
-  while (true){
-      try{
-        var url = "http://localhost:8080/api/player/startServer";
+  while(true){  
+    try{
+        var url = "http://localhost:8081/api/player/startServer";
         const response =  await fetch(url, {
           mode:'no-cors'
         });
-        console.log(response);
-        const responseArray = response.split(":");
-        
-        killerURL = "http://localhost:8080/api/player/" + repsonseArray[0];
+        var players = await response.json();
+        console.log(players);
+        var actionPlayers = players.data.toString().split(":");
+
+        killerURL = "http://localhost:8081/api/player/" + actionPlayers[0];
         const killer = await fetch(killerURL, {
           mode: 'no-cors'
-        });
-        console.log(await killer);
+        })
+        var killerDude = await killer.json(); 
+        var killerJSON = JSON.stringify(killerDude);
+        killerJSON = JSON.parse(killerJSON);
+        //console.log("KILLER id: " + killerJSON.id + " codename: " + killerJSON.codename);
         
-        killedURL = "http://localhost:8080/api/player/" + responseArray[1];
+        killedURL = "http://localhost:8081/api/player/" + actionPlayers[1];
         const killed = await fetch(killedURL, {
           mode: 'no-cors'
         });
-        console.log(await killed);
+        var killedDude = await killed.json();
+        var killedJSON = JSON.stringify(killedDude);
+        killedJSON = JSON.parse(killedJSON);
+        //console.log("KILLED id: " + killedJSON.id + " codename: " + killedJSON.codename);
+        console.log(killedJSON.codename);
 
-        var urlStopServer = "http://localhost:8080/api/player/stopServer";
-        const stopServer = await fetch(urlStopServer, {
-          mode: 'no-cors'
-        });
 
-      }
+        var table = document.getElementById("actionLog");
+        var row = table.insertRow();
+        var cell = row.insertCell();
+        cell.innerHTML = killerJSON.codename + " hit " + killedJSON.codename;
+      } 
       catch{
         console.log("Error");
-      }
-    }
-      //processing the response
-      //show on frontend
-      //go back to route
-    // setTimeout(stopServer(), 5000)
-
-    // function stopServer(){
-    //   var url = "http://localhost:8080/api/player/stopServer";
-    //   const response = fetch(url, {
-    //     mode:'no-cors'
-    //   });
-    // }
+      }};
 });
-
 
     greenNames = JSON.parse(localStorage.getItem('saveGreen'));
     redNames = JSON.parse(localStorage.getItem('saveRed'));

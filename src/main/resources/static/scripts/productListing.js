@@ -3,7 +3,7 @@ var redNames = [];
 
 async function addnewPlayer(id, codename){
 	//var url = "http://webytedatabase.herokuapp.com/api/player/new";
-	var url ="http://localhost:8080/api/player/new";
+	var url ="http://localhost:8081/api/player/new";
 	await fetch(url,{
 		method: 'POST',
 		headers: {
@@ -19,17 +19,14 @@ async function addnewPlayer(id, codename){
 }
 
 async function searchById(id, codename, tableName){
-	
 	//var url = "http://webytedatabase.herokuapp.com/api/player/" + id;
-	var url = "http://localhost:8080/api/player/" + id;
+	var url = "http://localhost:8081/api/player/" + id;
 	const response = await fetch(url, {
 		mode:'no-cors'
 	});
 
-	//Does try block if ID is in database else goes to catch block
 	try {
-		var player = await response.json(); //probably make it object
-		//console.log(player);
+		var player = await response.json(); 
 		var playerJSON = JSON.stringify(player);
 		playerJSON = JSON.parse(playerJSON);
 	}
@@ -40,8 +37,7 @@ async function searchById(id, codename, tableName){
 				const response = await fetch(url, {
 					mode:'no-cors'
 				});
-				let newPlay = await response.json(); //probably make it object
-				//console.log(newPlay);
+				let newPlay = await response.json();
 				var playerJSON = JSON.stringify(newPlay);
 				playerJSON = JSON.parse(playerJSON);
 			}
@@ -49,16 +45,12 @@ async function searchById(id, codename, tableName){
 			{
 				alert("ID not found. Please enter a codename");
 			}
-		
 	}
 	
 	function addPlayer() {
 		var table = document.getElementById(tableName);
 		var table2 = document.getElementById("greenTable");
 		var table1 = document.getElementById("redTable");
-		
-		
-		
 		if(table1.rows.length > 1)
 		{
 		for(var i = 0; i < table1.rows.length;i++)
