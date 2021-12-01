@@ -1,5 +1,10 @@
 greenNames = JSON.parse(localStorage.getItem('saveGreen'));
 redNames = JSON.parse(localStorage.getItem('saveRed'));
+var greenTotal = 0;
+var redTotal = 0;
+var firstEmpty = true;
+document.getElementById("greenScore").innerHTML = 0;
+document.getElementById("redScore").innerHTML = 0;
 
 document.addEventListener("DOMContentLoaded", async () => {
   while(true){  
@@ -33,12 +38,64 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
         var table = document.getElementById("actionLog");
-        var row = table.insertRow();
-        var cell = row.insertCell();
-        cell.innerHTML = killerJSON.codename + " hit " + killedJSON.codename;
+        
+       if(table.rows.length < 10)
+          {var row = table.insertRow();
+          var cell = row.insertCell();
+          cell.innerHTML = killerJSON.codename + " hit " + killedJSON.codename;
+          console.log(table.rows.length);
+          
+          }
+        else
+          {
+            for(var i = 2; i < table.rows.length; i++)
+              {
+                table.rows[i-1].cells[0].innerHTML = table.rows[i].cells[0].innerHTML;
+              }
+            table.rows[9].cells[0].innerHTML = killerJSON.codename + " hit " + killedJSON.codename;
+            
+          }
+          
+
+        //Stuff to change the scores
+        for(var i = 0; i < greenNames.length; i++)
+            {
+              if(killerJSON.codename == greenNames[i])
+                {
+                  var table = document.getElementById("greenTeam");
+                  table.rows[i+1].cells[1].innerHTML = parseInt(table.rows[i+1].cells[1].innerHTML) + 100;
+                  greenTotal = greenTotal + 100;
+                  document.getElementById("greenScore").innerHTML = greenTotal.toString();
+                }
+                if(killedJSON.codename == greenNames[i])
+                {
+                  var table = document.getElementById("greenTeam");
+                  table.rows[i+1].cells[1].innerHTML = parseInt(table.rows[i+1].cells[1].innerHTML) - 100;
+                  greenTotal = greenTotal - 100;
+                  document.getElementById("greenScore").innerHTML = greenTotal.toString();
+                }
+            }
+        for(var i = 0; i < redNames.length; i++)
+            {
+              if(killerJSON.codename == redNames[i])
+                {
+                  var table = document.getElementById("redTeam");
+                  table.rows[i+1].cells[1].innerHTML = parseInt(table.rows[i+1].cells[1].innerHTML) + 100;
+                  redTotal = redTotal + 100;
+                  document.getElementById("redScore").innerHTML = redTotal.toString();
+                }
+              if(killedJSON.codename == redNames[i])
+                {
+                  var table = document.getElementById("redTeam");
+                  table.rows[i+1].cells[1].innerHTML = parseInt(table.rows[i+1].cells[1].innerHTML) - 100;
+                  redTotal = redTotal - 100;
+                  document.getElementById("redScore").innerHTML = redTotal.toString();
+                }
+            }
+            
       } 
-      catch{
-        console.log("Error");
+      catch(error){
+        console.log(error);
       }};
 });
 
@@ -64,6 +121,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     cell = row.insertCell();
 		cell.innerHTML = 0;
     }
+  
 	document.getElementById('timer').innerHTML =
   06 + ":" + 00; //Change this to change game duration
 startTimer();

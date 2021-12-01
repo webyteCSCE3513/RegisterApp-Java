@@ -51,6 +51,16 @@ async function searchById(id, codename, tableName){
 		var table = document.getElementById(tableName);
 		var table2 = document.getElementById("greenTable");
 		var table1 = document.getElementById("redTable");
+		if(table1.rows.length == 16)
+		{
+			alert("Red Team is Full!");
+			return;
+		}
+		if(table2.rows.length == 16)
+		{
+			alert("Green Team is Full!");
+			return;
+		}
 		if(table1.rows.length > 1)
 		{
 		for(var i = 0; i < table1.rows.length;i++)
@@ -62,6 +72,15 @@ async function searchById(id, codename, tableName){
 					}
 			}
 		}
+		for(var i = 0; i < table2.rows.length;i++)
+			{
+				if(table2.rows[i].cells[0].innerHTML == playerJSON.id)
+					{
+						alert("Player already in game");
+						return;
+					}
+			}
+		
 
 		if(tableName == "greenTable")
 			{
@@ -76,17 +95,7 @@ async function searchById(id, codename, tableName){
 				localStorage.setItem('saveRed', JSON.stringify(redNames));
 			}
 			
-		if(table2.rows.length > 1)
-		{
-		for(var i = 0; i < table2.rows.length;i++)
-			{
-				if(table2.rows[i].cells[0].innerHTML == playerJSON.id)
-					{
-						alert("Player already in game");
-						return;
-					}
-			}
-		}
+		
 
 		var row = table.insertRow();
 		var cell = row.insertCell();
