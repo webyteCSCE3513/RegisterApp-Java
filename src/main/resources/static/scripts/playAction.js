@@ -7,7 +7,7 @@ document.getElementById("greenScore").innerHTML = 0;
 document.getElementById("redScore").innerHTML = 0;
 
 document.addEventListener("DOMContentLoaded", async () => {
-  while(true){  
+  while(m >= 0 && s >= 0){  
     try{
         var url = "http://localhost:8081/api/player/startServer";
         const response =  await fetch(url, {
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   
 	document.getElementById('timer').innerHTML =
-  06 + ":" + 00; //Change this to change game duration
+  01 + ":" + 00; //Change this to change game duration
 startTimer();
 
 
