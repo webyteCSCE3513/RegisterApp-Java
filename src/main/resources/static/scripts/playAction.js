@@ -42,7 +42,20 @@ document.addEventListener("DOMContentLoaded", async () => {
        if(table.rows.length < 10)
           {var row = table.insertRow();
           var cell = row.insertCell();
-          cell.innerHTML = killerJSON.codename + " hit " + killedJSON.codename;
+          for(var i = 0; i < greenNames.length; i++)
+          {
+            if(killerJSON.codename == greenNames[i])
+            {
+              cell.innerHTML = killerJSON.codename.fontcolor("green") + " hit " + killedJSON.codename;
+            }
+          }
+          for(var i = 0; i < redNames.length; i++)
+          {
+            if(killerJSON.codename == redNames[i])
+            {
+              cell.innerHTML = killerJSON.codename.fontcolor("red") + " hit " + killedJSON.codename;
+            }
+          } 
           console.log(table.rows.length);
           
           }
@@ -52,8 +65,22 @@ document.addEventListener("DOMContentLoaded", async () => {
               {
                 table.rows[i-1].cells[0].innerHTML = table.rows[i].cells[0].innerHTML;
               }
-            table.rows[9].cells[0].innerHTML = killerJSON.codename + " hit " + killedJSON.codename;
-            
+            for(var i = 0; i < greenNames.length; i++)
+          {
+            if(killerJSON.codename == greenNames[i])
+            {
+              table.rows[9].cells[0].innerHTML = killerJSON.codename.fontcolor("green") + " hit " + killedJSON.codename;
+            }
+          }
+          for(var i = 0; i < redNames.length; i++)
+          {
+            if(killerJSON.codename == redNames[i])
+            {
+              table.rows[9].cells[0].innerHTML = killerJSON.codename.fontcolor("red") + " hit " + killedJSON.codename;
+            }
+          } 
+
+
           }
           
 
@@ -108,6 +135,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         var row = table.insertRow();
 		var cell = row.insertCell();
 		cell.innerHTML = greenNames[i];
+    cell.style.color = "green";
     cell = row.insertCell();
 		cell.innerHTML = 0;
     }
@@ -118,12 +146,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         var row = table.insertRow();
 		var cell = row.insertCell();
 		cell.innerHTML = redNames[i];
+    cell.style.color = "red";
     cell = row.insertCell();
 		cell.innerHTML = 0;
     }
   
 	document.getElementById('timer').innerHTML =
-  01 + ":" + 00; //Change this to change game duration
+  06 + ":" + 00; //Change this to change game duration
 startTimer();
 
 
@@ -157,27 +186,3 @@ function displayWarning() {
     x.style.visibility = "hidden";
   }
 }
-
-// async function getResponse(){
-//   while (true){
-//     var url = "http://localhost:8080/api/player/startServer";
-//     const response =  await fetch(url, {
-//       mode:'no-cors'
-//     });
-//     console.log(response);
-//     const responseArray = response.split(":");
-    
-//     killerURL = "http://localhost:8080/api/player/" + repsonseArray[0];
-//     //killerURL = "http://localhost:8080/api/player/1";
-//     const killer = await fetch(killerURL, {
-//       mode: 'no-cors'
-//     });
-//     console.log(await killer);
-    
-//     killedURL = "http://localhost:8080/api/player/" + responseArray[1];
-//     const killed = await fetch(killedURL, {
-//       mode: 'no-cors'
-//     });
-//     console.log(await killed);
-//   }
-// }
